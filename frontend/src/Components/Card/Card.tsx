@@ -4,7 +4,12 @@ type Props = {}
 
 const Card = (props: Props) => {
   return (
-    <div>Card</div>
+    <div className='card'>
+        <div className='details'>
+            <h2>AAPL</h2>
+            <p>$110</p>
+        </div>
+    </div>
   )
 }
 

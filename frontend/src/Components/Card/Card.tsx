@@ -9,6 +9,7 @@ const Card = (props: Props) => {
             <h2>AAPL</h2>
             <p>$110</p>
         </div>
+        <p className='infon'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, laboriosam.</p>
     </div>
   )
 }

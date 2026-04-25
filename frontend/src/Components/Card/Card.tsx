@@ -7,7 +7,7 @@ interface Props {
   price: number;
 }
 
-const Card = (props: Props) => {
+const Card = ({companyName, ticker, price}: Props) => {
   return (
     <div className='card'>
         <div className='details'>

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Card.css";
 
-type Props = {}
+interface Props {}
 
 const Card = (props: Props) => {
   return (

@@ -3,7 +3,7 @@ import Card from '../Card/Card'
 
 interface Props {}
 
-const CardList: React.FC<Props> = (props: Props): JSX.Element => {
+const CardList: React.FC<Props> = (props: Props) => {
   return (
     <div>
         <Card companyName="Apple" ticker='AAPL' price={100} />

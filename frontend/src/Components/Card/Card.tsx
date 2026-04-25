@@ -1,7 +1,11 @@
 import React from 'react'
 import "./Card.css";
 
-interface Props {}
+interface Props {
+  companyName: string;
+  ticker: string;
+  price: number;
+}
 
 const Card = (props: Props) => {
   return (

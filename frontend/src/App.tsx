@@ -16,6 +16,7 @@ function App() {
     };
 
     const onPortfolioCreate = (e: SyntheticEvent) => {
+      e.preventDefault();
       console.log(e)
     }
 

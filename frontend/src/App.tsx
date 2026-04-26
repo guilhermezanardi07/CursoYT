@@ -43,12 +43,23 @@ function App() {
       }
       console.log(searchResult);
     };
+
   return (
     <div className="App">
-      <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange}/>
-      <ListPortfolio portfolioValues={portfolioValues} />
+      <Search 
+        onSearchSubmit={onSearchSubmit} 
+        search={search} 
+        handleSearchChange={handleSearchChange}
+      />
+      <ListPortfolio 
+        portfolioValues={portfolioValues} 
+        onPortfolioDelete={onPortfolioDelete} 
+      />
       {serverError && <h1>{serverError}</h1>}
-      <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate}/>
+      <CardList 
+        searchResults={searchResult} 
+        onPortfolioCreate={onPortfolioCreate}
+      />
     </div>
   );
 }

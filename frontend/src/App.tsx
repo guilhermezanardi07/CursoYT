@@ -2,9 +2,11 @@ import { SyntheticEvent, useState } from 'react';
 import './App.css';
 import CardList from './Components/CardList/CardList';
 import Search from './Components/Search/Search';
+import { CompanySearch } from './company';
 
 function App() {
     const [search, setSearch] = useState<string>("");
+    const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
         setSearch(e.target.value);

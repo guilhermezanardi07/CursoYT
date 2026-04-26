@@ -1,6 +1,10 @@
-import React, { ChangeEvent, useState, MouseEvent, SyntheticEvent } from 'react'
+import React, { ChangeEvent, useState, MouseEvent, SyntheticEvent, FormEvent } from 'react'
 
-interface Props {}
+interface Props {
+    onClick: (e: SyntheticEvent) => void;
+    search: string | undefined;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => void;
+};
 
 const Search : React.FC<Props> = (props: Props) => {
   return (

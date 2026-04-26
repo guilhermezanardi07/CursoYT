@@ -14,7 +14,7 @@ function App() {
         console.log(e);
     };
 
-    const onClick = (e: SyntheticEvent) => {
+    const onClick = async (e: SyntheticEvent) => {
         const result = await searchCompanies(search);
     };
   return (

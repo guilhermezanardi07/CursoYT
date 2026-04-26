@@ -16,7 +16,7 @@ function App() {
     };
   return (
     <div className="App">
-      <Search />
+      <Search onClick={onClick} search={search} handleChange={handleChange}/>
       <CardList />
     </div>
   );

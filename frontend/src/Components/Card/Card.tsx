@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Card.css";
 import { CompanySearch } from '../../company';
+import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
 
 interface Props {
   id: string;
@@ -18,6 +19,7 @@ const Card: React.FC<Props> = ({ id, searchResult }: Props) => {
         <p className="info">
           {searchResult.symbol}
         </p>
+        <AddPortfolio />
     </div>
   )
 }

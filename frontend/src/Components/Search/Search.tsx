@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState, MouseEvent, SyntheticEvent } from 'react'
 
-type Props = {}
+interface Props {}
 
 const Search : React.FC<Props> = (props: Props) => {
   return (

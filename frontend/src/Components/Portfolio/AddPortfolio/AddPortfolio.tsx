@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+interface Props {}
 
 const AddPortfolio = (props: Props) => {
-  return (
-    <div>AddPortfolio</div>
-  )
-}
+  return <div>AddPortfolio</div>;
+};
 
 export default AddPortfolio

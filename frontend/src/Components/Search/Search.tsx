@@ -6,7 +6,7 @@ interface Props {
     handleChange: (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => void;
 };
 
-const Search : React.FC<Props> = (props: Props) => {
+const Search : React.FC<Props> = ({onClick, search, handleChange}: Props) => {
   return (
     <div>
         <input value={search} onChange={(e) => handleChange(e)}></input>

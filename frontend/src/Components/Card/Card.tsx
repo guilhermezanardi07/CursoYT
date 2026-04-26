@@ -12,11 +12,11 @@ const Card: React.FC<Props> = ({ id, searchResult }: Props) => {
     <div className="card">
       <img alt="company logo" />
         <div className="details">
-            <h2>{searchResult.name} ({searchResult.symbol})</h2>
-            <p>${searchResult.currency}</p>
+            <h2>{searchResult.description} ({searchResult.displaySymbol})</h2>
+            <p>{searchResult.type}</p>
         </div>
         <p className="info">
-          {searchResult.exchangeShortName} - {searchResult.stockExchange}
+          {searchResult.symbol}
         </p>
     </div>
   )

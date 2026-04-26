@@ -3,6 +3,7 @@ import './App.css';
 import CardList from './Components/CardList/CardList';
 import Search from './Components/Search/Search';
 import { CompanySearch } from './company';
+import { searchCompanies } from './api';
 
 function App() {
     const [search, setSearch] = useState<string>("");
@@ -14,7 +15,7 @@ function App() {
     };
 
     const onClick = (e: SyntheticEvent) => {
-        console.log(e);
+        const result = await searchCompanies(search);
     };
   return (
     <div className="App">

@@ -3,7 +3,7 @@ import CardPortfolio from '../CardPortfolio/CardPortfolio';
 
 interface Props {
     portfolioValues: string[];
-    onPortfolioDelete: (e: SyntheticEvent);
+    onPortfolioDelete: (e: SyntheticEvent) => void;
 }
 
 const ListPortfolio = ({portfolioValues, onPortfolioDelete}: Props) => {

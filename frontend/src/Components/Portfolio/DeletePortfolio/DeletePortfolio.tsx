@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 
-interface Props {}
+interface Props {
+    onPortfolioDelete: (e: SyntheticEvent) => void;
+    portfolioValue: string;
+}
 
-const DeletePortfolio = (props: Props) => {
+const DeletePortfolio = ({ onPortfolioDelete, portfolioValue }: Props) => {
   return (
-    <div>DeletePortfolio</div>
+    <div>
+        <form onSubmit={onPortfolioDelete}>
+            <input hidden={true} value={portfolioValue} />
+            <button>X</button>
+        </form>
+    </div>
   )
 }
 

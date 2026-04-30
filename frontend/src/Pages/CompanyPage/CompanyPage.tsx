@@ -34,7 +34,12 @@ const CompanyPage = (props: Props) => {
             <Tile title="Country" subTitle={company.country} />
             <Tile title="Market Cap" subTitle={company.marketCapitalization.toString()} />
             <p className='bg-white shadow rounded text-medium text-gray-900 p-3 mt-1 m-4'>
-              {company.weburl}
+              {company.name} is a {company.country}-based company operating in the {company.finnhubIndustry} industry.
+              {company.marketCapitalization
+                ? ` It has a market capitalization of ${company.marketCapitalization}.`
+                : ""}
+              {" "}The company provides products and services globally.
+              {company.weburl ? ` More details can be found at ${company.weburl}.` : ""}
             </p>
           </CompanyDashboard>
 

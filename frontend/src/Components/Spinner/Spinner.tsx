@@ -1,5 +1,6 @@
 import React from 'react'
 import { ClipLoader } from 'react-spinners';
+import "./Spinner.css";
 
 type Props = {
     isLoading?: boolean;

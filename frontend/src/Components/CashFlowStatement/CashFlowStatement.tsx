@@ -6,6 +6,14 @@ import Table from '../Table/Table';
 
 type Props = {}
 
+const findValue = (cf: any[], ...concepts: string[]) => {
+  for (const concept of concepts) {
+    const found = cf.find(i => i.concept === concept);
+    if (found?.value !== undefined && found.value !== null) return found.value;
+  }
+  return undefined;
+};
+
 const config = [
   {
     label: "Date",
@@ -14,37 +22,62 @@ const config = [
   {
     label: "Operating Cashflow",
     render: (company: CompanyCashFlow) =>
-      company.report.cf.find(i => i.concept === "us-gaap_NetCashProvidedByUsedInOperatingActivities")?.value,
+      findValue(company.report.cf,
+        "us-gaap_NetCashProvidedByUsedInOperatingActivities",
+        "us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"
+      ),
   },
   {
     label: "Investing Cashflow",
     render: (company: CompanyCashFlow) =>
-      company.report.cf.find(i => i.concept === "us-gaap_NetCashProvidedByUsedInInvestingActivities")?.value,
+      findValue(company.report.cf,
+        "us-gaap_NetCashProvidedByUsedInInvestingActivities",
+        "us-gaap_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations"
+      ),
   },
   {
     label: "Financing Cashflow",
     render: (company: CompanyCashFlow) =>
-      company.report.cf.find(i => i.concept === "us-gaap_NetCashProvidedByUsedInFinancingActivities")?.value,
+      findValue(company.report.cf,
+        "us-gaap_NetCashProvidedByUsedInFinancingActivities",
+        "us-gaap_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations"
+      ),
   },
   {
     label: "Cash At End of Period",
     render: (company: CompanyCashFlow) =>
-      company.report.cf.find(i => i.concept === "us-gaap_CashAndCashEquivalentsAtCarryingValue")?.value,
+      findValue(company.report.cf,
+        "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect",
+        "us-gaap_CashAndCashEquivalentsPeriodIncreaseDecrease"
+      ),
   },
   {
     label: "CapEX",
     render: (company: CompanyCashFlow) =>
-      company.report.cf.find(i => i.concept === "us-gaap_PaymentsToAcquirePropertyPlantAndEquipment")?.value,
+      findValue(company.report.cf,
+        "us-gaap_PaymentsToAcquirePropertyPlantAndEquipment"
+      ),
   },
   {
     label: "Issuance Of Stock",
     render: (company: CompanyCashFlow) =>
-      company.report.cf.find(i => i.concept === "us-gaap_ProceedsFromIssuanceOfCommonStock")?.value,
+      findValue(company.report.cf,
+        "us-gaap_ProceedsFromIssuanceOfCommonStock"
+      ),
   },
   {
     label: "Free Cash Flow",
-    render: (company: CompanyCashFlow) =>
-      company.report.cf.find(i => i.concept === "us-gaap_FreeCashFlow")?.value,
+    render: (company: CompanyCashFlow) => {
+      const operating = findValue(company.report.cf,
+        "us-gaap_NetCashProvidedByUsedInOperatingActivities",
+        "us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"
+      );
+      const capex = findValue(company.report.cf,
+        "us-gaap_PaymentsToAcquirePropertyPlantAndEquipment"
+      );
+      if (operating === undefined || capex === undefined) return undefined;
+      return operating - capex;
+    },
   },
 ];
 

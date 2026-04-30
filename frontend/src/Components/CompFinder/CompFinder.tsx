@@ -8,18 +8,18 @@ type Props = {
 }
 
 const CompFinder = ({ticker}: Props) => {
-    const [companyData, setCompanyData] = useState<CompanyCompData>();
+    const [companyData, setCompanyData] = useState<string[]>();
     useEffect(() => {
         const getComps = async () => {
             const value = await getCompData(ticker);
-            setCompanyData(value?.data[0]);
+            setCompanyData(value?.data);
         }
         getComps();
     }, [ticker])
   return (
     <div className='inline-flex round-medium0md shadow-sm m-4'>
-        {companyData?.peersList.map((ticker) => {
-        return <CompFinderItem />
+        {companyData?.map((ticker) => {
+            return <CompFinderItem ticker={ticker} key={ticker} />
         })}
     </div>
   )

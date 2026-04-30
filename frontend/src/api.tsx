@@ -95,7 +95,7 @@ export const getCashflowStatement = async (query: string) => {
 
 export const getCompData = async (query: string) => {
   try {
-    const data = await axios.get<CompanyCompData[]>(
+    const data = await axios.get<string[]>(
       `https://finnhub.io/api/v1/stock/peers?symbol=${query}&token=${process.env.REACT_APP_API_KEY}`
     );
     return data;

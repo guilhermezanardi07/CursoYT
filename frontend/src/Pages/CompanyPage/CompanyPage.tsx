@@ -16,6 +16,7 @@ const CompanyPage = (props: Props) => {
   useEffect(() => {
     const getProfileInit = async () => {
       const result = await getCompanyProfile(ticker!);
+      console.log(result?.data);
       setCompany(result?.data);
     }
     getProfileInit();
@@ -28,7 +29,13 @@ const CompanyPage = (props: Props) => {
           <Sidebar />
 
           <CompanyDashboard ticker={ticker!}>
-            <Tile title="Company Name" subTitle={company.name}></Tile>
+            <Tile title="Company Name" subTitle={company.name} />
+            <Tile title="Industry" subTitle={company.finnhubIndustry} />
+            <Tile title="Country" subTitle={company.country} />
+            <Tile title="Market Cap" subTitle={company.marketCapitalization.toString()} />
+            <p className='bg-white shadow rounded text-medium text-gray-900 p-3 mt-1 m-4'>
+              {company.weburl}
+            </p>
           </CompanyDashboard>
 
         </div>

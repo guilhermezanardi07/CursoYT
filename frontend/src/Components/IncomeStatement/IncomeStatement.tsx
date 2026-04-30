@@ -4,6 +4,7 @@ import { useOutletContext } from 'react-router';
 import { getIncomeStatement } from '../../api';
 import Table from '../Table/Table';
 import Spinner from '../Spinner/Spinner';
+import { formatLargeMonetaryNumber, formatRatio } from '../../Helpers/NumberFormatting';
 
 type Props = {}
 
@@ -15,47 +16,47 @@ const configs = [
   {
     label: "Revenue",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax")?.value),
   },
   {
     label: "Cost Of Revenue",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_CostOfGoodsAndServicesSold")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_CostOfGoodsAndServicesSold")?.value),
   },
   {
     label: "Gross Profit",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_GrossProfit")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_GrossProfit")?.value),
   },
   {
     label: "Research & Development",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_ResearchAndDevelopmentExpense")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_ResearchAndDevelopmentExpense")?.value),
   },
   {
     label: "Selling & Marketing",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_SellingAndMarketingExpense")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_SellingAndMarketingExpense")?.value),
   },
   {
     label: "General & Administrative",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_GeneralAndAdministrativeExpense")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_GeneralAndAdministrativeExpense")?.value),
   },
   {
     label: "Operating Income",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_OperatingIncomeLoss")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_OperatingIncomeLoss")?.value),
   },
   {
     label: "Non-Operating Income",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_NonoperatingIncomeExpense")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_NonoperatingIncomeExpense")?.value),
   },
   {
     label: "Net Income",
     render: (company: CompanyIncomeStatement) =>
-      company.report.ic.find(i => i.concept === "us-gaap_NetIncomeLoss")?.value,
+      formatLargeMonetaryNumber(company.report.ic.find(i => i.concept === "us-gaap_NetIncomeLoss")?.value),
   },
 ];
 

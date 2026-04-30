@@ -6,6 +6,11 @@ interface SearchResponse {
   result: CompanySearch[];
 }
 
+interface IncomeStatementResponse {
+  data: CompanyIncomeStatement[];
+  symbol: string;
+}
+
 export const searchCompanies = async (query: string) => {
   try {
     const data = await axios.get<SearchResponse>(
@@ -23,7 +28,6 @@ export const searchCompanies = async (query: string) => {
   }
 };
 
-
 export const getCompanyProfile = async (query: string) => {
   try {
     const data = await axios.get<CompanyProfile>(
@@ -33,8 +37,7 @@ export const getCompanyProfile = async (query: string) => {
   } catch (error: any) {
     console.log("Error message from API: ", error.message);
   }
-};
-
+}
 
 export const getKeyMetrics = async (query: string) => {
   try {
@@ -45,13 +48,12 @@ export const getKeyMetrics = async (query: string) => {
   } catch (error: any) {
     console.log("Error message from API: ", error.message);
   }
-};
-
+}
 
 export const getIncomeStatement = async (query: string) => {
   try {
-    const data = await axios.get<CompanyIncomeStatement[]>(
-      `https://finnhub.io/api/v1/financials/reported?symbol=${query}&freq=annual&token=${process.env.REACT_APP_API_KEY}`
+    const data = await axios.get<IncomeStatementResponse>(
+      `https://finnhub.io/api/v1/stock/financials-reported?symbol=${query}&freq=annual&token=${process.env.REACT_APP_API_KEY}`
     )
     return data;
   } catch (error: any) {

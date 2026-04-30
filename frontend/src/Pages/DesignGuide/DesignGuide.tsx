@@ -19,7 +19,7 @@ const DesignGuide = (props: Props) => {
         <h1>Finshark Design Page</h1>
         <h2>Thi is FinShark's Design page. This is where we will house various design aspects of the app</h2>
         <RatioList data={testIncomeStatementData} config={tableConfig}/>
-        <Table />
+        <Table data={testIncomeStatementData} config={tableConfig}/>
     </>
   )
 }

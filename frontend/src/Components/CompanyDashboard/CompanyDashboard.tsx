@@ -13,7 +13,7 @@ const CompanyDashboard = ({children, ticker}: Props) => {
               <div className="px-4 md:px-6 mx-auto w-full">
                 <div>
                   <div className="flex flex-wrap">{children}</div>
-                  <div className="flex flex-wrap">{<Outlet context={ticker}/>}</div>
+                  <div className="flex flex-wrap overflow-x-auto w-full">{<Outlet context={ticker}/>}</div>
                 </div>
               </div>
             </div>

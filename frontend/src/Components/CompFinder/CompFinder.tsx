@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CompanyCompData } from '../../company';
 import { getCompData } from '../../api';
+import CompFinderItem from './CompFinderItem/CompFinderItem';
 
 type Props = {
     ticker: string;

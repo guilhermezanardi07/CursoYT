@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CompanyBalanceSheet, CompanyCashFlow, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
+import { CompanyBalanceSheet, CompanyCashFlow, CompanyCompData, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
 
 interface SearchResponse {
   count: number;
@@ -87,6 +87,17 @@ export const getCashflowStatement = async (query: string) => {
     const data = await axios.get<CashFlowResponse>(
       `https://finnhub.io/api/v1/stock/financials-reported?symbol=${query}&freq=annual&token=${process.env.REACT_APP_API_KEY}`
     )
+    return data;
+  } catch (error: any) {
+    console.log("Error message from API: ", error.message);
+  }
+}
+
+export const getCompData = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyCompData[]>(
+      `https://finnhub.io/api/v1/stock/peers?symbol=${query}&token=${process.env.REACT_APP_API_KEY}`
+    );
     return data;
   } catch (error: any) {
     console.log("Error message from API: ", error.message);

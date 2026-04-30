@@ -465,8 +465,11 @@ export interface Dividend {
   declarationDate: string;
 }
 
+// export interface CompanyCompData {
+//   symbol: string;
+//   peersList: string[];
+// }
 export interface CompanyCompData {
-  symbol: string;
   peersList: string[];
 }
 

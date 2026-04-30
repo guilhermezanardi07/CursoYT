@@ -17,7 +17,7 @@ const CompFinder = ({ticker}: Props) => {
         getComps();
     }, [ticker])
   return (
-    <div className='inline-flex round-medium0md shadow-sm m-4'>
+    <div className='inline-flex shadow-sm m-4 border-l border-gray-300 rounded-lg overflow-hidden'>
         {companyData?.map((ticker) => {
             return <CompFinderItem ticker={ticker} key={ticker} />
         })}

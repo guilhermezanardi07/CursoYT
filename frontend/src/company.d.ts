@@ -473,12 +473,19 @@ export interface CompanyCompData {
   peersList: string[];
 }
 
+// export interface CompanyTenK {
+//   filledDate: string | number | Date;
+//   symbol: string;
+//   fillingDate: string;
+//   acceptedDate: string;
+//   cik: string;
+//   type: string;
+//   link: string;
+//   finalLink: string;
+// }
 export interface CompanyTenK {
   symbol: string;
-  fillingDate: string;
-  acceptedDate: string;
-  cik: string;
-  type: string;
-  link: string;
-  finalLink: string;
+  filedDate: string;
+  reportUrl: string;
+  form: string;
 }

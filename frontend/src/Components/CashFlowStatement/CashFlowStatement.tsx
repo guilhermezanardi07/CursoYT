@@ -4,6 +4,7 @@ import { useOutletContext } from 'react-router';
 import { getCashflowStatement } from '../../api';
 import Table from '../Table/Table';
 import Spinner from '../Spinner/Spinner';
+import { formatLargeMonetaryNumber } from '../../Helpers/NumberFormatting';
 
 type Props = {}
 
@@ -23,48 +24,48 @@ const config = [
   {
     label: "Operating Cashflow",
     render: (company: CompanyCashFlow) =>
-      findValue(company.report.cf,
+      formatLargeMonetaryNumber(findValue(company.report.cf,
         "us-gaap_NetCashProvidedByUsedInOperatingActivities",
         "us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"
-      ),
+      )),
   },
   {
     label: "Investing Cashflow",
     render: (company: CompanyCashFlow) =>
-      findValue(company.report.cf,
+      formatLargeMonetaryNumber(findValue(company.report.cf,
         "us-gaap_NetCashProvidedByUsedInInvestingActivities",
         "us-gaap_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations"
-      ),
+      )),
   },
   {
     label: "Financing Cashflow",
     render: (company: CompanyCashFlow) =>
-      findValue(company.report.cf,
+      formatLargeMonetaryNumber(findValue(company.report.cf,
         "us-gaap_NetCashProvidedByUsedInFinancingActivities",
         "us-gaap_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations"
-      ),
+      )),
   },
   {
     label: "Cash At End of Period",
     render: (company: CompanyCashFlow) =>
-      findValue(company.report.cf,
+      formatLargeMonetaryNumber(findValue(company.report.cf,
         "us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect",
         "us-gaap_CashAndCashEquivalentsPeriodIncreaseDecrease"
-      ),
+      )),
   },
   {
     label: "CapEX",
     render: (company: CompanyCashFlow) =>
-      findValue(company.report.cf,
+      formatLargeMonetaryNumber(findValue(company.report.cf,
         "us-gaap_PaymentsToAcquirePropertyPlantAndEquipment"
-      ),
+      )),
   },
   {
     label: "Issuance Of Stock",
     render: (company: CompanyCashFlow) =>
-      findValue(company.report.cf,
+      formatLargeMonetaryNumber(findValue(company.report.cf,
         "us-gaap_ProceedsFromIssuanceOfCommonStock"
-      ),
+      )),
   },
   {
     label: "Free Cash Flow",
@@ -77,7 +78,7 @@ const config = [
         "us-gaap_PaymentsToAcquirePropertyPlantAndEquipment"
       );
       if (operating === undefined || capex === undefined) return undefined;
-      return operating - capex;
+      return formatLargeMonetaryNumber(operating - capex);
     },
   },
 ];

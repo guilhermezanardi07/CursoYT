@@ -82,7 +82,7 @@ export const getBalanceSheet = async (query: string) => {
   }
 }
 
-export const getCashflow = async (query: string) => {
+export const getCashflowStatement = async (query: string) => {
   try {
     const data = await axios.get<CashFlowResponse>(
       `https://finnhub.io/api/v1/stock/financials-reported?symbol=${query}&freq=annual&token=${process.env.REACT_APP_API_KEY}`

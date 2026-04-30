@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CompanyCashFlow } from '../../company';
 import { useOutletContext } from 'react-router';
-import { getCashflow } from '../../api';
+import { getCashflowStatement } from '../../api';
 import Table from '../Table/Table';
 
 type Props = {}
@@ -52,18 +52,18 @@ const CashFlowStatement = (props: Props) => {
     const ticker = useOutletContext<string>();
     const [cashflowData, setCashflow] = useState<CompanyCashFlow[]>();
     useEffect(() => {
-        const getData = async () => {
-            const result = await getCashflow(ticker!);
-            setCashflow(result?.data.data);
-        };
-        getData();
+        const fetchCashFlow = async () => {
+            const result = await getCashflowStatement(ticker!);
+            setCashflow(result!.data.data);
+        }
+        fetchCashFlow();
     }, []);
   return (
     <>
         {cashflowData ? (
             <Table config={config} data={cashflowData} />
         ) : (
-            <h1>Company not found</h1>
+            <h1>No results!</h1>
         )}
     </>
   )

@@ -40,5 +40,11 @@ namespace api.Controllers
             return Ok(stock.ToStockDto());
         }
 
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateStockRequest stockDto)
+        {
+            
+        }
+
     }
 }

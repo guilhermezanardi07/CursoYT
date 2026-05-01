@@ -25,9 +25,18 @@ namespace api.Repository
             return stockModel;
         }
 
-        public Task<Stock?> DeleteAsync(int id)
+        public async Task<Stock?> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var stockModel = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (stockModel == null)
+            {
+                return null;
+            }
+
+            _context.Stocks.Remove(stockModel);
+            await _context.SaveChangesAsync();
+            return stockModel;
         }
 
         public Task<List<Stock>> GetAllAsync()

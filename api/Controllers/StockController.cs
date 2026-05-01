@@ -6,6 +6,8 @@ using api.Data;
 using Microsoft.AspNetCore.Mvc;
 using api.Mappers;
 using api.Dtos.Stock;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace api.Controllers
 {
@@ -20,13 +22,15 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var stocks = _context.Stocks.ToList()
-             .Select(s => s.ToStockDto());
+            var stocks = await _context.Stocks.ToListAsync();
 
-            return Ok(stocks);
+            var stockDto = stocks.Select(s => s.ToStockDto());
+
+            return Ok(stockDto);
         }
+
 
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] int id)

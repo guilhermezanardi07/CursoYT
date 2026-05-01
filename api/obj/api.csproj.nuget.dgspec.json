@@ -52,19 +52,19 @@
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[10.0.4, )"
+              "version": "[10.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
-              "version": "[11.0.0-preview.3.26207.106, )"
+              "version": "[10.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[11.0.0-preview.3.26207.106, )"
+              "version": "[10.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
-              "version": "[11.0.0-preview.3.26207.106, )"
+              "version": "[10.0.7, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

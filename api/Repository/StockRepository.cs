@@ -49,9 +49,16 @@ namespace api.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto stockDto)
+        public async Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto stockDto)
         {
-            throw new NotImplementedException();
+            var existingStock = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (existingStock == null)
+            {
+                return null;
+            }
+
+            
         }
     }
 }

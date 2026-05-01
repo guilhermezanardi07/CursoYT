@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Interfaces;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -22,7 +23,9 @@ namespace api.Controllers
         {
             var comment = await _commentRepo.GetAllAsync();
 
-            
+            var commentDto = comment.Select(s => s.ToCommentDto());
+
+            return Ok(commentDto);
         }
     }
 }

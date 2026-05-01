@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "pkpWlY5FOQQ=",
-  "success": true,
+  "dgSpecHash": "GwNkfSeyDhE=",
+  "success": false,
   "projectFilePath": "C:\\_CursoYT\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\guilh\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.4\\microsoft.aspnetcore.openapi.10.0.4.nupkg.sha512",
+    "C:\\Users\\guilh\\.nuget\\packages\\microsoft.entityframeworkcore.design\\11.0.0-preview.3.26207.106\\microsoft.entityframeworkcore.design.11.0.0-preview.3.26207.106.nupkg.sha512",
+    "C:\\Users\\guilh\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\11.0.0-preview.3.26207.106\\microsoft.entityframeworkcore.sqlserver.11.0.0-preview.3.26207.106.nupkg.sha512",
+    "C:\\Users\\guilh\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\11.0.0-preview.3.26207.106\\microsoft.entityframeworkcore.tools.11.0.0-preview.3.26207.106.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\microsoft.extensions.apidescription.server\\10.0.0\\microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\microsoft.openapi\\2.4.1\\microsoft.openapi.2.4.1.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\swashbuckle.aspnetcore\\10.1.7\\swashbuckle.aspnetcore.10.1.7.nupkg.sha512",
@@ -12,5 +15,28 @@
     "C:\\Users\\guilh\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\10.1.7\\swashbuckle.aspnetcore.swaggergen.10.1.7.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.1.7\\swashbuckle.aspnetcore.swaggerui.10.1.7.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1202",
+      "level": "Error",
+      "message": "Package Microsoft.EntityFrameworkCore.Design 11.0.0-preview.3.26207.106 is not compatible with net10.0 (.NETCoreApp,Version=v10.0). Package Microsoft.EntityFrameworkCore.Design 11.0.0-preview.3.26207.106 supports: net11.0 (.NETCoreApp,Version=v11.0)",
+      "projectPath": "C:\\_CursoYT\\api\\api.csproj",
+      "filePath": "C:\\_CursoYT\\api\\api.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore.Design",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1202",
+      "level": "Error",
+      "message": "Package Microsoft.EntityFrameworkCore.SqlServer 11.0.0-preview.3.26207.106 is not compatible with net10.0 (.NETCoreApp,Version=v10.0). Package Microsoft.EntityFrameworkCore.SqlServer 11.0.0-preview.3.26207.106 supports: net11.0 (.NETCoreApp,Version=v11.0)",
+      "projectPath": "C:\\_CursoYT\\api\\api.csproj",
+      "filePath": "C:\\_CursoYT\\api\\api.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

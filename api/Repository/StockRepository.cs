@@ -18,9 +18,11 @@ namespace api.Repository
             _context = context;
         }
 
-        public Task<Stock> CreateAsync(Stock stockModel)
+        public async Task<Stock> CreateAsync(Stock stockModel)
         {
-            throw new NotImplementedException();
+            await _context.Stocks.AddAsync(stockModel);
+            await _context.SaveChangesAsync();
+            return stockModel;
         }
 
         public Task<Stock?> DeleteAsync(int id)

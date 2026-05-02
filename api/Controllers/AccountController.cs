@@ -2,11 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    public class AccountController
+    [Route("api/account")]
+    [ApiController]
+    public class AccountController : ControllerBase
     {
-        
+        private readonly UserManager<AppUser> _useManager;
+        public AccountController(UserManager<AppUser> userManager)
+        {
+            _useManager = userManager;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDto registerDto
+        {
+            
+        }
     }
 }

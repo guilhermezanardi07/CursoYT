@@ -28,6 +28,11 @@ namespace api.Data
                 .HasOne(u => u.AppUser)
                 .WithMany(u => u.Portfolios)
                 .HasForeignKey(p => p.AppUserId);
+            
+            builder.Entity<Portfolio>()
+                .HasOne(u => u.Stock)
+                .WithMany(u => u.Portfolios)
+                .HasForeignKey(p => p.StockId);
 
             // Seed de roles com valores totalmente fixos
             List<IdentityRole> roles = new List<IdentityRole>

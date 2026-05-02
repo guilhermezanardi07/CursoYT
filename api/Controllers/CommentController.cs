@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Dtos.Comment;
 using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +41,7 @@ namespace api.Controllers
         }
 
         [HttpPost("{stockId}")]
-        public async Task<IActionResult> Create([FromRoute] int stockId, )
+        public async Task<IActionResult> Create([FromRoute] int stockId, CreateCommentDto commentDto)
         {
             
         }

@@ -41,5 +41,8 @@ namespace api.Controllers
 
         [HttpPost("{stockId}")]
         public async Task<IActionResult> Create([FromRoute] int stockId, )
+        {
+            
+        }
     }
 }

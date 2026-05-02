@@ -8,6 +8,7 @@ using api.Mappers;
 using api.Dtos.Stock;
 using Microsoft.EntityFrameworkCore;
 using api.Interfaces;
+using api.Helpers;
 
 
 namespace api.Controllers
@@ -30,7 +31,7 @@ namespace api.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
                 
-            var stocks = await _stockRepo.GetAllAsync();
+            var stocks = await _stockRepo.GetAllAsync(query);
 
             var stockDto = stocks.Select(s => s.ToStockDto());
 

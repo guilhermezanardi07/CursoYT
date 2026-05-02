@@ -27,10 +27,25 @@ namespace api.Controllers
             _portfolioRepo = portfolioRepo;
         }
 
+        // [HttpGet]
+        // [Authorize]
+        // public async Task<IActionResult> GetUserPortfolio()
+        // {
+        //     var username = User.GetUsername();
+        //     var appUser = await _userManager.FindByNameAsync(username);
+        //     var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
+        //     return Ok(userPortfolio);
+        // }
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> GetUserPortfolio()
         {
+            // Adiciona isso temporariamente
+            foreach (var claim in User.Claims)
+            {
+                Console.WriteLine($"Claim Type: {claim.Type} | Value: {claim.Value}");
+            }
+    
             var username = User.GetUsername();
             var appUser = await _userManager.FindByNameAsync(username);
             var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);

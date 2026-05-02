@@ -60,7 +60,14 @@ namespace api.Controllers
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDto updateDto)
         {
-            var comment = await _commentRepo.UpdateAsync();
+            var comment = await _commentRepo.UpdateAsync(id, updateDto.ToCommentFromUpdate());
+
+            if (comment == null)
+            {
+                return NotFound("Comment not found");
+            }
+
+            return Ok(comment.ToCommentDto());
         }
     }
 }

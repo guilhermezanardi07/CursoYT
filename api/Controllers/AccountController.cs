@@ -21,6 +21,12 @@ namespace api.Controllers
             _tokenService = tokenService;
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto logingDto)
+        {
+            
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {

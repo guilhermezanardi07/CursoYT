@@ -21,16 +21,18 @@ namespace api.Data
         {
             base.OnModelCreating(builder);
 
-            // Seed de roles
+            // Seed de roles com valores fixos
             List<IdentityRole> roles = new List<IdentityRole>
             {
                 new IdentityRole
                 {
+                    Id = "1", // valor fixo para evitar mudanças
                     Name = "Admin",
                     NormalizedName = "ADMIN"
                 },
                 new IdentityRole
                 {
+                    Id = "2", // valor fixo para evitar mudanças
                     Name = "User",
                     NormalizedName = "USER"
                 },

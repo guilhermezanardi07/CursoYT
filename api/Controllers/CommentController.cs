@@ -22,12 +22,11 @@ namespace api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var comment = await _commentRepo.GetAllAsync();
-
             var commentDto = comment.Select(s => s.ToCommentDto());
-
             return Ok(commentDto);
         }
-        
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var comment = await _commentRepo.GetByIdAsync(id);

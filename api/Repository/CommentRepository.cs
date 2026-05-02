@@ -16,14 +16,15 @@ namespace api.Repository
         {
             _context = context;
         }
+
         public async Task<List<Comment>> GetAllAsync()
         {
             return await _context.Comments.ToListAsync();
         }
 
-        public Task<Comment?> GetByIdAsync(int id)
+        public async Task<Comment?> GetByIdAsync(int id)
         {
-            
+            return await _context.Comments.FindAsync(id);
         }
     }
 }

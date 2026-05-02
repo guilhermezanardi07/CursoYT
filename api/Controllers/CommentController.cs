@@ -52,7 +52,8 @@ namespace api.Controllers
             }
 
             var commentModel = commentDto.ToCommentFromCreate(stockId);
-            await _commentRepo.CreateAsync
+            await _commentRepo.CreateAsync(commentModel);
+            return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToCommentDto());
         }
     }
 }

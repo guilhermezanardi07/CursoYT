@@ -13,10 +13,22 @@ namespace api.Data
         public ApplicationDBContext(DbContextOptions dbContextOptions)
         : base(dbContextOptions)
         {
-        
         }
 
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Garantir que CreatedOn seja sempre salvo em UTC
+            modelBuilder.Entity<Comment>()
+                .Property(c => c.CreatedOn)
+                .HasConversion(
+                    v => v.ToUniversalTime(),
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc)
+                );
+        }
     }
 }

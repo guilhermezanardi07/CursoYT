@@ -27,8 +27,10 @@ namespace api.Mappers
             {
                 Title = commentDto.Title,
                 Content = commentDto.Content,
-                StockId = stockId
+                StockId = stockId,
+                CreatedOn = DateTime.UtcNow
             };
         }
+
     }
 }

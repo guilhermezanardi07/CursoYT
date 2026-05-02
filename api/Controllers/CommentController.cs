@@ -69,5 +69,12 @@ namespace api.Controllers
 
             return Ok(comment.ToCommentDto());
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            
+        }
     }
 }

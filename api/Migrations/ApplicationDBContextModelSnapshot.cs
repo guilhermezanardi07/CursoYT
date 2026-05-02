@@ -50,15 +50,15 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c5d16489-6af2-486d-95fd-9ec64955afae",
-                            ConcurrencyStamp = "4040c973-5dfe-4338-afc3-a96861e237ed",
+                            Id = "1",
+                            ConcurrencyStamp = "a1111111-1111-1111-1111-111111111111",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "77378f69-5272-4243-af0b-210521d2454d",
-                            ConcurrencyStamp = "b36f8547-08c0-46db-b9bc-28d77efb5a21",
+                            Id = "2",
+                            ConcurrencyStamp = "b2222222-2222-2222-2222-222222222222",
                             Name = "User",
                             NormalizedName = "USER"
                         });

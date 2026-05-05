@@ -92,14 +92,15 @@ namespace api.Controllers
             var username = User.GetUsername();
             var appUser = await _userManager.FindByNameAsync(username);
 
-            var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
+            var deletedPortfolio = await _portfolioRepo.DeletePortfolio(appUser, symbol);
 
-            var filteredStock = userPortfolio.Wuere(s => s.Symbol.ToLower() == symbol.ToLower()).ToList();
-
-            if (filteredStock.Count() == 1)
+            if (deletedPortfolio == null)
             {
-                await _portfolioRepo.Equals
+                return BadRequest("Stock not in your portfolio");
             }
+
+            return Ok(deletedPortfolio);
         }
+
     }
 }

@@ -92,14 +92,14 @@ namespace api.Mappers
             };
         }
 
-        public static Stock ToStockFromFMP(this FMPStock fmpStock)
+        public static Stock ToStockFromFMP(this FMPStock fmpStock, FinnhubQuote? quote = null)
         {
             return new Stock
             {
                 Symbol = fmpStock.ticker,
                 CompanyName = fmpStock.name,
-                Purchase = 0,         // Finnhub profile não retorna preço
-                LastDiv = 0,          // Finnhub profile não retorna dividendo
+                Purchase = quote != null ? (decimal)quote.c : 0,
+                LastDiv = quote != null ? (decimal)quote.d : 0,
                 Industry = fmpStock.finnhubIndustry,
                 MarketCap = fmpStock.marketCapitalization
             };

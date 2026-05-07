@@ -1,10 +1,19 @@
 import React from 'react'
+import { CommentGet } from '../../Models/Comment';
+import StockCommentListItem from '../StockCommentListItem/StockCommentListItem';
 
-type Props = {}
+type Props = {
+    comments: CommentGet[];
+}
 
-const StockCommentList = (props: Props) => {
+const StockCommentList = ({comments}: Props) => {
   return (
-    <div>StockCommentList</div>
+    <>
+        {comments ? comments.map((comment) => {
+            return <StockCommentListItem comment={comment} />
+        })
+    : ""}
+    </>
   )
 }
 

@@ -18,15 +18,16 @@ type CommentFormInputs = {
 const StockComment = ({ stockSymbol }: Props) => {
     const [ comments, setComments ] = useState<CommentGet[] | null>(null);
     const [ loading, setLoading ] = useState<boolean>(false);
+    const baseTicker = stockSymbol.split('.')[0]; // ✅ adicionar isso
 
     const getComments = useCallback(() => {
         setLoading(true);
-        commentGetAPI(stockSymbol)
+        commentGetAPI(baseTicker) // ✅ trocar stockSymbol por baseTicker
         .then((res) => {
             setLoading(false);
             setComments(res?.data!);
         })
-    }, [stockSymbol]);
+    }, [baseTicker]);
 
     useEffect(() => {
         getComments();
@@ -34,7 +35,7 @@ const StockComment = ({ stockSymbol }: Props) => {
 
     const handleComment = async (e: CommentFormInputs) => {
         try {
-            const res = await commentPostAPI(e.title, e.content, stockSymbol);
+            const res = await commentPostAPI(e.title, e.content, baseTicker);
             if(res) {
                 toast.success("Comment created successfully!");
                 getComments();
@@ -47,7 +48,7 @@ const StockComment = ({ stockSymbol }: Props) => {
   return (
     <div className='flex flex-col'>
         {loading ? <Spinner /> : <StockCommentList comments={comments!} /> }
-        <StockCommentForm symbol={stockSymbol} handleComment={handleComment} />
+        <StockCommentForm symbol={baseTicker} handleComment={handleComment} />
     </div>
   )
 };

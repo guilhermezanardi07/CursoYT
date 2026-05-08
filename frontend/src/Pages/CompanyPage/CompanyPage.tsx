@@ -18,14 +18,13 @@ const CompanyPage = (props: Props) => {
 
   useEffect(() => {
     const getProfileInit = async () => {
-      // Se o ticker tiver sufixo (.TO, .NE, etc), usa só a parte base
       const baseTicker = ticker!.split('.')[0];
       const result = await getCompanyProfile(baseTicker);
       setCompany(result?.data);
       setLoading(false);
     }
     getProfileInit();
-  }, [])
+  }, [ticker])
 
   return (
     <>

@@ -46,6 +46,7 @@ export const UserProvider = ({ children } : Props) => {
                 localStorage.setItem("user", JSON.stringify(userObj));
                 setToken(res?.data.token!);
                 setUser(userObj!);
+                axios.defaults.headers.common["Authorization"] = "Bearer " + res?.data.token;
                 toast.success("Login Succes!")
                 navigate("/search");
             }
@@ -64,6 +65,7 @@ export const UserProvider = ({ children } : Props) => {
                 localStorage.setItem("user", JSON.stringify(userObj));
                 setToken(res?.data.token!);
                 setUser(userObj!);
+                axios.defaults.headers.common["Authorization"] = "Bearer " + res?.data.token;
                 toast.success("Login Succes!")
                 navigate("/search");
             }
@@ -75,6 +77,7 @@ export const UserProvider = ({ children } : Props) => {
         localStorage.removeItem("user");
         setUser(null);
         setToken("");
+        delete axios.defaults.headers.common["Authorization"];
         navigate("/");
     };
 

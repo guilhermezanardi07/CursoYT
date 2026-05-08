@@ -64,22 +64,29 @@ const config = [
 const BalanceSheet = (props: Props) => {
     const ticker = useOutletContext<string>();
     const [balanceSheet, setBalanceSheet] = useState<CompanyBalanceSheet>();
+    const [loading, setLoading] = useState<boolean>(true);
+
     useEffect(() => {
         const getData = async () => {
-            const value = await getBalanceSheet(ticker!);
-            setBalanceSheet(value?.data.data[0]);
+            const baseTicker = ticker.split('.')[0];
+            const value = await getBalanceSheet(baseTicker);
+            setBalanceSheet(value?.data?.data?.[0]);
+            setLoading(false);
         };
         getData();
     }, []);
-  return (
-    <>
-        {balanceSheet ? (
-            <RatioList config={config} data={balanceSheet} />
-        ) : (
-            <Spinner />
-        )}
-    </>
-  )
+
+    return (
+        <>
+            {loading ? (
+                <Spinner />
+            ) : balanceSheet ? (
+                <RatioList config={config} data={balanceSheet} />
+            ) : (
+                <p className="text-gray-500 p-4">No balance sheet data available.</p>
+            )}
+        </>
+    )
 }
 
 export default BalanceSheet

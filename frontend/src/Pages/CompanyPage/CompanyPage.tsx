@@ -12,25 +12,28 @@ import TenKFinder from '../../Components/TenKFinder/TenKFinder';
 interface Props {}
 
 const CompanyPage = (props: Props) => {
-  //https:localhost:3000/
   let { ticker } = useParams();
   const [company, setCompany] = useState<CompanyProfile>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const getProfileInit = async () => {
-      const result = await getCompanyProfile(ticker!);
-      console.log(result?.data);
+      // Se o ticker tiver sufixo (.TO, .NE, etc), usa só a parte base
+      const baseTicker = ticker!.split('.')[0];
+      const result = await getCompanyProfile(baseTicker);
       setCompany(result?.data);
+      setLoading(false);
     }
     getProfileInit();
   }, [])
+
   return (
     <>
-      {company ? (
+      {loading ? (
+        <Spinner />
+      ) : company && company.ticker ? (
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
-
           <Sidebar />
-
           <CompanyDashboard ticker={ticker!}>
             <Tile title="Company Name" subTitle={company.name} />
             <Tile title="Industry" subTitle={company.finnhubIndustry} />
@@ -44,13 +47,14 @@ const CompanyPage = (props: Props) => {
                 ? ` It has a market capitalization of ${company.marketCapitalization}.`
                 : ""}
               {" "}The company provides products and services globally.
-              {company.weburl ? ` More details can be found at ${company.weburl}.` : ""}
+              {company.weburl ? ` More details at ${company.weburl}.` : ""}
             </p>
           </CompanyDashboard>
-
         </div>
       ) : (
-        <Spinner />
+        <div className="flex justify-center items-center h-screen">
+          <p className="text-xl text-gray-500">No data available for <strong>{ticker}</strong>.</p>
+        </div>
       )}
     </>
   )

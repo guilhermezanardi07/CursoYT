@@ -75,23 +75,30 @@ const tableConfig = [
 const CompanyProfile = (props: Props) => {
   const ticker = useOutletContext<string>();
   const [companyData, setCompanyData] = useState<CompanyKeyMetrics>();
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const getCompanyKeyMetrics = async () => {
-        const value = await getKeyMetrics(ticker);
+        const baseTicker = ticker.split('.')[0];
+        const value = await getKeyMetrics(baseTicker);
         setCompanyData(value?.data);
+        setLoading(false);
     };
     getCompanyKeyMetrics();
   }, []);
+
   return (
     <>
-    {companyData ? (
-        <>
-            <RatioList data={companyData} config={tableConfig} />
-            <StockComment stockSymbol={ticker} />
-        </>
-    ) : (
+      {loading ? (
         <Spinner />
-    )}
+      ) : companyData ? (
+        <>
+          <RatioList data={companyData} config={tableConfig} />
+          <StockComment stockSymbol={ticker} />
+        </>
+      ) : (
+        <p className="text-gray-500 p-4">No profile data available.</p>
+      )}
     </>
   )
 }

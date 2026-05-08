@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using api.Extensions;
 using api.Interfaces;
@@ -9,7 +8,6 @@ using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace api.Controllers
 {
@@ -31,25 +29,10 @@ namespace api.Controllers
             _fmpService = fmpService;
         }
 
-        // [HttpGet]
-        // [Authorize]
-        // public async Task<IActionResult> GetUserPortfolio()
-        // {
-        //     var username = User.GetUsername();
-        //     var appUser = await _userManager.FindByNameAsync(username);
-        //     var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
-        //     return Ok(userPortfolio);
-        // }
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> GetUserPortfolio()
         {
-            // Adiciona isso temporariamente
-            foreach (var claim in User.Claims)
-            {
-                Console.WriteLine($"Claim Type: {claim.Type} | Value: {claim.Value}");
-            }
-    
             var username = User.GetUsername();
             var appUser = await _userManager.FindByNameAsync(username);
             var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
@@ -69,19 +52,23 @@ namespace api.Controllers
                 stock = await _fmpService.FindStockBySymbolAsync(symbol);
                 if (stock == null)
                 {
-                    return BadRequest("Stoc does not exists");
+                    stock = new Stock
+                    {
+                        Symbol = symbol.ToUpper(),
+                        CompanyName = symbol.ToUpper(),
+                        Purchase = 0,
+                        LastDiv = 0,
+                        Industry = "Unknown",
+                        MarketCap = 0
+                    };
                 }
-                else
-                {
-                    await _stockRepo.CreateAsync(stock);
-                }
+                await _stockRepo.CreateAsync(stock);
             }
-
-            if (stock == null) return BadRequest("Stock not found");
 
             var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
 
-            if (userPortfolio.Any(e => e.Symbol.ToLower() == symbol.ToLower())) return BadRequest("Cannot add same stock to portfolio");
+            if (userPortfolio.Any(e => e.Symbol.ToLower() == symbol.ToLower())) 
+                return BadRequest("Cannot add same stock to portfolio");
 
             var portfolioModel = new Portfolio
             {
@@ -117,6 +104,5 @@ namespace api.Controllers
 
             return Ok(deletedPortfolio);
         }
-
     }
 }
